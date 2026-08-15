@@ -4,8 +4,8 @@ import { Box, Typography, Button, MobileStepper  } from '@mui/material';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 
-import { BACKEND_URL } from '../constants/server-urls';
 import { useNavigate } from 'react-router-dom';
+import { BASE_API_URL } from '../config/api-client';
 
 const carouselItems = [
   {
@@ -13,21 +13,21 @@ const carouselItems = [
     description: 'Connect with certified plumbers, electricians, and technicians in your area instantly.',
     buttonText: 'Explore Services',
     buttonClick: 'services',
-    imageUrl: `${BACKEND_URL}uploads/carousel/electrician-1.avif`,
+    imageUrl: `${BASE_API_URL}uploads/carousel/electrician-1.avif`,
   },
   {
     title: 'Get Things Fixed Fast',
     description: 'Verified home maintenance, appliance repair, and cleaning services right at your doorstep.',
     buttonText: 'Book Repairman',
     buttonClick: 'book-service',
-    imageUrl: `${BACKEND_URL}uploads/carousel/plumber-1.avif`,
+    imageUrl: `${BASE_API_URL}uploads/carousel/plumber-1.avif`,
   },
   {
     title: 'Grow Your Local Business',
     description: 'List your services on ProFinder today and reach thousands of daily local customers.',
     buttonText: 'Join as a Partner',
     buttonClick: 'contact-us',
-    imageUrl: `${BACKEND_URL}uploads/carousel/local-business-partner.avif`,
+    imageUrl: `${BASE_API_URL}uploads/carousel/local-business-partner.avif`,
   },
 ];
 
