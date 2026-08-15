@@ -22,7 +22,7 @@ export const createApiFactory = (endpoint) => {
             return response.data;
         },
         getExtendedRoute: async (extension) => {
-            const response = await API.get(`/${extension}`);
+            const response = await API.get(`${extension}`);
             return response.data.entitiesList;
         },
         create: async (data) => {
