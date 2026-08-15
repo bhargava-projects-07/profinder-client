@@ -1,82 +1,11 @@
 
-import axios from 'axios';
-import { BASE_API_URL } from '../constants/server-urls';
+import { createApiFactory } from '../config/api-client';
 
-let apiEntity = "/service-provier";
-const apiUrl = BASE_API_URL + apiEntity;
+const serviceApi = createApiFactory('/service-provier');
 
-export const getEntity = async (entity_id) => {
-    try
-    {
-        const response = await axios.get(apiUrl+`/${entity_id}`);
-        return response.data;
-    }
-    catch(error)
-    {
-        throw error;
-    }
-}
-
-export const entitySave = async (entityData) => {
-    try
-    {
-        const response = await axios.post(apiUrl,entityData);
-        return response.data;
-    }
-    catch(error)
-    {
-        throw error;
-    }
-}
-
-export const entityUpdate = async ( entity_id,entityData )=>
-{
-    try
-    {
-        const response = await axios.put(apiUrl+`/${entity_id}`,entityData );
-        return response.data;
-    }
-    catch(error)
-    {
-        throw error;
-    }
-}
-
-export const getEntitysList = async()=>
-{
-    try
-    {
-        const response = await axios.get(apiUrl);
-        return response.data.entitiesList;
-    }
-    catch(error)
-    {
-        throw error;
-    }
-}
-
-export const getMatchingProviders = async(serviceid,subserviceid)=>
-{
-    try
-    {
-        const response = await axios.get( BASE_API_URL + `/serviceproviders/dropdown/${serviceid}/${subserviceid}` );
-        return response.data.entitiesList;
-    }
-    catch(error)
-    {
-        throw error;
-    }
-}
-
-export const deleteEntity = async (id) =>
-{
-    try
-    {
-        const response = await axios.delete(apiUrl+`/${id}`);
-        return response.data;
-    }
-    catch(error)
-    {
-        throw error;
-    }
-}
+export const getEntity = (entity_id) => serviceApi.getById(entity_id);
+export const entitySave = (entityData) => serviceApi.create(entityData);
+export const entityUpdate = (entity_id,entityData) => serviceApi.update(entity_id,entityData);
+export const deleteEntity = (entity_id) => serviceApi.delete(entity_id);
+export const getEntitysList = () => serviceApi.getAll();
+export const getMatchingProviders = (serviceid,subserviceid) => serviceApi.getExtendedRoute(`/serviceproviders/dropdown/${serviceid}/${subserviceid}`);

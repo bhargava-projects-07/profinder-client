@@ -1,18 +1,6 @@
 
-import axios from 'axios';
-import { BASE_API_URL } from '../constants/server-urls';
+import { createApiFactory } from '../config/api-client';
 
-let apiEntity = "/user";
-const apiUrl = BASE_API_URL + apiEntity;
+const serviceApi = createApiFactory('/user');
 
-export const entitySave = async (entityData) => {
-    try
-    {
-        const response = await axios.post(apiUrl,entityData);
-        return response.data;
-    }
-    catch(error)
-    {
-        throw error;
-    }
-}
+export const entitySave = (entityData) => serviceApi.create(entityData);
