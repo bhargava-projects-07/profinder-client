@@ -1,0 +1,50 @@
+
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #f0fffb;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10; /* Ensures sidebar stays over right elements */
+  border-right: 2px solid black;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 20px 0;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  color: black;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #00adb5;
+  color: #fff;
+}
+
+.nav-icon {
+  margin-right: 12px;
+}
+
+.nav-link.active {
+  background-color: #252542;
+  color: white; /* High-contrast accent color */
+  border-left: 4px solid white;
+  padding-left: 20px; /* Adjusts for the added border width */
+}

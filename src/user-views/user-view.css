@@ -1,0 +1,44 @@
+
+.breadCrumbUserView
+{
+    height: 36px;
+    background-color: darkblue;
+    color: white;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 19px;
+}
+
+.subDispHeading
+{
+    height: 42px;
+    background-color: lightblue;
+    color: black;
+
+    border-radius: 4px;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 19px;
+}
+
+.homeDispHeading
+{
+    background-color: rgb(18, 72, 237);
+    color: white;
+
+    border-radius: 10px;
+    
+    font-weight: 700;
+    font-size: 17px;
+
+    display: inline;
+    padding: 0px 20px 0px 20px;
+}

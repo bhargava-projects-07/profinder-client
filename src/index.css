@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --color-algae-50: #f0fffb;  /* Ultra-faint tinted page background */
+  --color-algae-100: #d6fff5; /* Card background */
+  --color-algae-200: #b3fff0; /* Your exact color (Brilliant Accent) */
+  --color-algae-300: #8affeb; /* Hover highlight for light badges */
+  --color-algae-400: #4dffd4; /* Vibrant active state markers */
+  --color-algae-500: #00f5be; /* Solid brand base for CTA buttons */
+  --color-algae-600: #00c297; /* Button hover state */
+  --color-algae-700: #008f70; /* Muted borders or section headers */
+  --color-algae-800: #0d4d3f; /* Dark sidebar panels / typography */
+  --color-algae-900: #06261f; /* Deepest contract block for headers */
+}
+
+body
+{
+    margin: 0% !important;
+}

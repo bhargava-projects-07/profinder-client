@@ -1,0 +1,6 @@
+
+.site-main-view
+{
+  display: flex;
+  flex-direction: column;
+}

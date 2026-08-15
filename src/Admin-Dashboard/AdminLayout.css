@@ -1,0 +1,33 @@
+
+.app-container {
+  display: flex;
+  width: 100%;
+}
+
+.main-wrapper {
+  flex: 1;
+  margin-left: 250px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #1a1a2e;
+}
+
+.main-content {
+  padding: 40px;
+}
+
+.admin-top-header {
+  height: 80px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}

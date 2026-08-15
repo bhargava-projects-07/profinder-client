@@ -1,0 +1,14 @@
+
+.breadCrumbDivAdmin
+{
+    height: 36px;
+    background-color: darkcyan;
+    color: white;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 19px;
+}
