@@ -30,7 +30,7 @@ export default function AboutUs() {
         >
           <Box
             component="img"
-            src={`${BASE_API_URL}uploads/services-1.avif`}
+            src={`${BASE_API_URL}/uploads/services-1.avif`}
             alt="ProFinder Business Base"
             sx={{
               width: '140px',
@@ -49,7 +49,7 @@ export default function AboutUs() {
           {/* Overlapping Image */}
           <Box
             component="img"
-            src={`${BASE_API_URL}uploads/painting-1.jpg`}
+            src={`${BASE_API_URL}/uploads/painting-1.jpg`}
             alt="ProFinder Service Team"
             sx={{
               width: '140px',

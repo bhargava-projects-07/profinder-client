@@ -51,7 +51,7 @@ const BlogCard = ({ blog, backendUrl }) => {
 
   const displayedText = `${content.substring(0, 150)}${isLongContent ? "..." : ""}`;  
 
-  const imageUrl = `${backendUrl}uploads/blog-images/${blog.filename}`;
+  const imageUrl = `${backendUrl}/uploads/blog-images/${blog.filename}`;
 
   return (
     <Card sx={{

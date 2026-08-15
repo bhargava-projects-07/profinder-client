@@ -13,21 +13,21 @@ const carouselItems = [
     description: 'Connect with certified plumbers, electricians, and technicians in your area instantly.',
     buttonText: 'Explore Services',
     buttonClick: 'services',
-    imageUrl: `${BASE_API_URL}uploads/carousel/electrician-1.avif`,
+    imageUrl: `${BASE_API_URL}/uploads/carousel/electrician-1.avif`,
   },
   {
     title: 'Get Things Fixed Fast',
     description: 'Verified home maintenance, appliance repair, and cleaning services right at your doorstep.',
     buttonText: 'Book Repairman',
     buttonClick: 'book-service',
-    imageUrl: `${BASE_API_URL}uploads/carousel/plumber-1.avif`,
+    imageUrl: `${BASE_API_URL}/uploads/carousel/plumber-1.avif`,
   },
   {
     title: 'Grow Your Local Business',
     description: 'List your services on ProFinder today and reach thousands of daily local customers.',
     buttonText: 'Join as a Partner',
     buttonClick: 'contact-us',
-    imageUrl: `${BASE_API_URL}uploads/carousel/local-business-partner.avif`,
+    imageUrl: `${BASE_API_URL}/uploads/carousel/local-business-partner.avif`,
   },
 ];
 
