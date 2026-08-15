@@ -2,8 +2,9 @@
 import { Box, Container, Grid, Card, CardMedia, CardContent, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-import { BACKEND_URL } from "../constants/server-urls";
+
 import '../user-views/user-view.css';
+import { BASE_API_URL } from "../config/api-client";
 
 const MUIBlogsDisplay = ({ blogs }) => {
 
@@ -28,7 +29,7 @@ const MUIBlogsDisplay = ({ blogs }) => {
           <Grid container spacing={3}>
             {blogs.map((blog) => (
               <Grid size={{ xs: 12, sm: 4 }} key={blog._id}>
-                <BlogCard blog={blog} backendUrl={BACKEND_URL} />
+                <BlogCard blog={blog} backendUrl={BASE_API_URL} />
               </Grid>
             ))}
           </Grid>

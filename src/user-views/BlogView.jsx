@@ -7,14 +7,14 @@ import { Box, CardMedia, Grid, Typography } from "@mui/material";
 import BookService from "./BookService";
 import Services from "./Services";
 import '../user-views/user-view.css';
+import { BASE_API_URL } from "../config/api-client";
 
 const BlogView = () => {
 
     const [ blog,setBlog ] = useState({ title: "", filename: "",content: "" });
     const { blogId } = useParams();
 
-    const BACKEND_URL = "http://localhost:9004"; 
-    const imageUrl = `${BACKEND_URL}/uploads/blog-images/${blog.filename}`;
+    const imageUrl = `${BASE_API_URL}/uploads/blog-images/${blog.filename}`;
 
     useEffect(()=>
     {
