@@ -85,6 +85,7 @@ const Blog = () => {
 
       const imageData = setUpFormData();
       const data = await entitySave(imageData);
+      setIsSubmitting( false );
       if( data?.cause !== undefined )
       {
           toast.error("Could not save "+entityName.toLowerCase()+": " + data?.cause);
@@ -110,6 +111,7 @@ const Blog = () => {
         try
         {
             const result = await entityUpdate(entity_id,entity);
+            setIsSubmitting( false );
             const successMsg = result?.message || "Blog updated successfully!";
             const isUpdated = result?.updated;
             notifyUpd(successMsg,isUpdated,result);
@@ -159,25 +161,14 @@ const Blog = () => {
         event.preventDefault();
         setIsSubmitting(true);
 
-        try
+        if( entity_id )
         {
-            if( entity_id )
-            {
-                updateEntity();
-            }
-            else
-            {
-                saveEntity();
-            }
+            updateEntity();
         }
-        catch(error)
+        else
         {
-            console.error(error);
+            saveEntity();
         }
-        finally
-        {
-            setIsSubmitting(false);
-        }        
     }
 
   return (

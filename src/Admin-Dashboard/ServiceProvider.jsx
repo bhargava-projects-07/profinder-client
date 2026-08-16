@@ -131,6 +131,7 @@ const ServiceProvider = () => {
     const saveEntity = async ()=>{
 
       const data = await entitySave(entity);
+      setIsSubmitting( false );
       if( data?.cause !== undefined )
       {
           toast.error("Could not save "+entityName.toLowerCase()+": " + data?.cause);
@@ -156,6 +157,7 @@ const ServiceProvider = () => {
         try
         {
             const result = await entityUpdate(entity_id,entity);
+            setIsSubmitting( false );
             const successMsg = result?.message || "Service Provider updated successfully!";
             const isUpdated = result?.updated;
             notifyUpd(successMsg,isUpdated,result);
@@ -205,25 +207,14 @@ const ServiceProvider = () => {
         event.preventDefault();
         setIsSubmitting(true);
 
-        try
+        if( entity_id )
         {
-            if( entity_id )
-            {
-                updateEntity();
-            }
-            else
-            {
-                saveEntity();
-            }
+            updateEntity();
         }
-        catch(error)
+        else
         {
-            console.error(error);
+            saveEntity();
         }
-        finally
-        {
-            setIsSubmitting(false);
-        }        
     }
 
   if( loading ) return <p className='mt-5 text-center'>Loading Services...</p>

@@ -100,7 +100,7 @@ const AdminLogin = () => {
                             <button 
                                 type="submit"
                                 disabled={isSubmitting}
-                                className={`bg-algae-500 text-algae-900 font-semibold text-black py-2 px-8 rounded-full ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer hover:bg-emerald-500'}`}
+                                className={`bg-algae-500 text-algae-900 font-semibold text-black py-2 px-8 rounded-full ${isSubmitting ? ' px-16 opacity-70 cursor-not-allowed' : ' px-8 cursor-pointer hover:bg-emerald-500'}`}
                             >
                                 {isSubmitting && (
                                     <svg className="animate-spin h-4 w-4 text-white" xmlns="http://w3.org" fill="none" viewBox="0 0 24 24">
