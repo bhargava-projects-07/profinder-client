@@ -85,7 +85,6 @@ const Blog = () => {
 
       const imageData = setUpFormData();
       const data = await entitySave(imageData);
-      setIsSubmitting( false );
       if( data?.cause !== undefined )
       {
           toast.error("Could not save "+entityName.toLowerCase()+": " + data?.cause);
@@ -111,7 +110,6 @@ const Blog = () => {
         try
         {
             const result = await entityUpdate(entity_id,entity);
-            setIsSubmitting( false );
             const successMsg = result?.message || "Blog updated successfully!";
             const isUpdated = result?.updated;
             notifyUpd(successMsg,isUpdated,result);
@@ -156,17 +154,31 @@ const Blog = () => {
       }
     }
 
-    const submitForm = ()=>
+    const submitForm = (event)=>
     {
-        if( entity_id )
+        event.preventDefault();
+        setIsSubmitting(true);
+
+        try
         {
-          updateEntity();
+            if( entity_id )
+            {
+                updateEntity();
+            }
+            else
+            {
+                saveEntity();
+            }
         }
-        else
+        catch(error)
         {
-          saveEntity();
+            console.error(error);
         }
-    } 
+        finally
+        {
+            setIsSubmitting(false);
+        }        
+    }
 
   return (
 
@@ -184,7 +196,7 @@ const Blog = () => {
 
             <section className='mt-2 ps-13'>
 
-              <BlogForm entity={entity} changeHandler={changeHandler} fileHandler={fileHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Blog" isSubmitting={isSubmitting} setIsSubmitting={setIsSubmitting} />
+              <BlogForm entity={entity} changeHandler={changeHandler} fileHandler={fileHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Blog" isSubmitting={isSubmitting} />
 
             </section>
 

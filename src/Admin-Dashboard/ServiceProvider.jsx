@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
@@ -130,7 +131,6 @@ const ServiceProvider = () => {
     const saveEntity = async ()=>{
 
       const data = await entitySave(entity);
-      setIsSubmitting( false );
       if( data?.cause !== undefined )
       {
           toast.error("Could not save "+entityName.toLowerCase()+": " + data?.cause);
@@ -156,7 +156,6 @@ const ServiceProvider = () => {
         try
         {
             const result = await entityUpdate(entity_id,entity);
-            setIsSubmitting( false );
             const successMsg = result?.message || "Service Provider updated successfully!";
             const isUpdated = result?.updated;
             notifyUpd(successMsg,isUpdated,result);
@@ -201,17 +200,31 @@ const ServiceProvider = () => {
       }
     }
 
-    const submitForm = ()=>
+    const submitForm = (event)=>
     {
-        if( entity_id )
+        event.preventDefault();
+        setIsSubmitting(true);
+
+        try
         {
-          updateEntity();
+            if( entity_id )
+            {
+                updateEntity();
+            }
+            else
+            {
+                saveEntity();
+            }
         }
-        else
+        catch(error)
         {
-          saveEntity();
+            console.error(error);
         }
-    } 
+        finally
+        {
+            setIsSubmitting(false);
+        }        
+    }
 
   if( loading ) return <p className='mt-5 text-center'>Loading Services...</p>
   if( loadingsub ) return <p className='mt-5 text-center'>Loading Sub Services...</p>
@@ -232,7 +245,7 @@ const ServiceProvider = () => {
 
             <section className='mt-2 ps-13'>
 
-              <ServiceProviderForm entity={entity} changeHandler={changeHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Service Provider" optionsArr={services} subOptionsArr={subservices} isSubmitting={isSubmitting} setIsSubmitting={setIsSubmitting} />
+              <ServiceProviderForm entity={entity} changeHandler={changeHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Service Provider" optionsArr={services} subOptionsArr={subservices} isSubmitting={isSubmitting} />
 
             </section>
 

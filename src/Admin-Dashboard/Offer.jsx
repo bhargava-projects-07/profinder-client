@@ -66,7 +66,6 @@ const Offer = () => {
     const saveEntity = async ()=>{
 
       const data = await entitySave(entity);
-      setIsSubmitting( false );
       if( data?.cause !== undefined )
       {
           toast.error("Could not save "+entityName.toLowerCase()+": " + data?.cause);
@@ -92,7 +91,6 @@ const Offer = () => {
         try
         {
             const result = await entityUpdate(entity_id,entity);
-            setIsSubmitting( false );
             const successMsg = result?.message || "Offer updated successfully!";
             const isUpdated = result?.updated;
             notifyUpd(successMsg,isUpdated,result);
@@ -137,17 +135,31 @@ const Offer = () => {
       }
     }
 
-    const submitForm = ()=>
+    const submitForm = (event)=>
     {
-        if( entity_id )
+        event.preventDefault();
+        setIsSubmitting(true);
+
+        try
         {
-          updateEntity();
+            if( entity_id )
+            {
+                updateEntity();
+            }
+            else
+            {
+                saveEntity();
+            }
         }
-        else
+        catch(error)
         {
-          saveEntity();
+            console.error(error);
         }
-    } 
+        finally
+        {
+            setIsSubmitting(false);
+        }        
+    }
 
   return (
 
@@ -165,7 +177,7 @@ const Offer = () => {
 
             <section className='mt-2 ps-13'>
 
-              <OfferForm entity={entity} changeHandler={changeHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Offer" isSubmitting={isSubmitting} setIsSubmitting={setIsSubmitting} />
+              <OfferForm entity={entity} changeHandler={changeHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Offer" isSubmitting={isSubmitting} />
 
             </section>
 

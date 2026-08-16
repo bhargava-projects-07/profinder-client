@@ -2,7 +2,7 @@
 import { FormField, FormFileInput, FormInput, FormTextarea } from "../components/TWFormElements";
 import SubmitButton from "./SubmitButton";
 
-const BlogForm = ({ entity, changeHandler, fileHandler, submitForm, entity_id,entity_name, isSubmitting, setIsSubmitting }) => {
+const BlogForm = ({ entity, changeHandler, fileHandler, submitForm, entity_id,entity_name, isSubmitting }) => {
 
     const btnLable = entity_id ? `Update ${entity_name}` : `Add ${entity_name}`;
     
@@ -27,7 +27,7 @@ const BlogForm = ({ entity, changeHandler, fileHandler, submitForm, entity_id,en
         </FormField>
       </div>
 
-      <SubmitButton isSubmitting={isSubmitting} setIsSubmitting={setIsSubmitting} btnLable={btnLable} submitForm={submitForm}  />
+      <SubmitButton isSubmitting={isSubmitting} btnLable={btnLable} />
 
     </form>
   );

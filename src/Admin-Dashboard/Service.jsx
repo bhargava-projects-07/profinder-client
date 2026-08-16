@@ -66,7 +66,6 @@ const Service = () => {
     const saveEntity = async ()=>{
 
       const data = await entitySave(entity);
-      setIsSubmitting( false );
       if( data?.cause !== undefined )
       {
           toast.error("Could not save "+entityName.toLowerCase()+": " + data?.cause);
@@ -92,7 +91,6 @@ const Service = () => {
         try
         {
             const result = await entityUpdate(entity_id,entity);
-            setIsSubmitting( false );
             const successMsg = result?.message || "Entity updated successfully!";
             const isUpdated = result?.updated;
             notifyUpd(successMsg,isUpdated,result);
@@ -137,17 +135,31 @@ const Service = () => {
       }
     }
 
-    const submitForm = ()=>
+    const submitForm = (event)=>
     {
-        if( entity_id )
+        event.preventDefault();
+        setIsSubmitting(true);
+
+        try
         {
-          updateEntity();
+            if( entity_id )
+            {
+                updateEntity();
+            }
+            else
+            {
+                saveEntity();
+            }
         }
-        else
+        catch(error)
         {
-          saveEntity();
+            console.error(error);
         }
-    } 
+        finally
+        {
+            setIsSubmitting(false);
+        }        
+    }
 
   return (
 
@@ -165,7 +177,7 @@ const Service = () => {
 
             <section className='mt-2 ps-13'>
 
-              <AdminServiceForm entity={entity} changeHandler={changeHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Service" isSubmitting={isSubmitting} setIsSubmitting={setIsSubmitting} />
+              <AdminServiceForm entity={entity} changeHandler={changeHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Service" isSubmitting={isSubmitting} />
 
             </section>
 
