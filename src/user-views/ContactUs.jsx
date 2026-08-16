@@ -37,7 +37,7 @@ const ContactUs = () => {
                 <Grid container spacing={4} sx={{ mt: 4, px: { xs: 2, sm: 4, md: 6 }, py: 2, alignItems: 'center' }}>
                     
                     <Grid size={{ xs: 12, lg: 6 }}>
-                        <Box component="form" noValidate onSubmit={submitForm}>
+                        <Box component="form" onSubmit={submitForm}>
                             <Grid container columnSpacing={3} rowSpacing={2}>
                             <Grid size={{ xs: 12, sm: 6 }}>
                                 <MUITextField required id="name" name="name" label="Your Name" value={contact.name} onChange={changeHandler} />

@@ -86,12 +86,12 @@ const AdminLogin = () => {
                     <form onSubmit={submitLogin}>
 
                         <div className="mb-4">
-                            <input type="email" name='email' placeholder='Email'
+                            <input required type="email" name='email' placeholder='Email'
                             value={user.email} className='shadow appearance-none border border-gray rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' onChange={changeHandler} />
                         </div>
 
                         <div className="mb-4">
-                            <input type="password" name='password' placeholder='Password'
+                            <input required type="password" name='password' placeholder='Password'
                             value={user.password} className='shadow appearance-none border border-gray rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' onChange={changeHandler} />
                         </div>
 

@@ -11,19 +11,19 @@ const SubServiceForm = ({ entity, changeHandler, submitForm, entity_id,entity_na
 
       <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4">
         <FormField label="Select Service " htmlFor="serviceid" span="sm:col-span-1">
-            <FormSelect id="serviceid" name="serviceid" value={entity.serviceid} onChange={changeHandler} options={optionsArr} />
+            <FormSelect required id="serviceid" name="serviceid" value={entity.serviceid} onChange={changeHandler} options={optionsArr} />
         </FormField>
       </div>
 
       <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4">
         <FormField label="Sub Service Name" htmlFor="name" span="sm:col-span-1">
-            <FormInput id="name" name="name" value={entity.name} onChange={changeHandler} />
+            <FormInput required id="name" name="name" value={entity.name} onChange={changeHandler} />
         </FormField>
       </div>
 
       <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4">
         <FormField label="Sub Service Description" htmlFor="description" span="col-span-2">
-            <FormTextarea id="description" rows="3" name="description" value={entity.description} onChange={changeHandler} />
+            <FormTextarea required id="description" rows="3" name="description" value={entity.description} onChange={changeHandler} />
         </FormField>
       </div>
 

@@ -11,13 +11,13 @@ const OfferForm = ({ entity, changeHandler, submitForm, entity_id,entity_name, i
 
       <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4">
         <FormField label="Offer Title" htmlFor="title" span="sm:col-span-2">
-            <FormInput id="title" name="title" value={entity.title} onChange={changeHandler} />
+            <FormInput required id="title" name="title" value={entity.title} onChange={changeHandler} />
         </FormField>
       </div>
 
       <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4">
         <FormField label="Offer Detail" htmlFor="detail" span="col-span-2">
-            <FormTextarea id="detail" rows="3" name="detail" value={entity.detail} onChange={changeHandler} />
+            <FormTextarea required id="detail" rows="3" name="detail" value={entity.detail} onChange={changeHandler} />
         </FormField>
       </div>
 

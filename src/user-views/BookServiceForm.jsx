@@ -24,7 +24,6 @@ const BookServiceForm = ({ subDisp, entity, changeHandler, submitForm, entity_id
         <Box
             component="form" 
             onSubmit={submitForm} 
-            noValidate 
             sx={{  width: '100%', maxWidth: 520,px: { xs: 2, sm: 0 } }}
             >
 

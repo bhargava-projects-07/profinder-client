@@ -10,25 +10,25 @@ const UserRegistrationForm = ({ entity,changeHandler, submitForm,cancelReg  }) =
 
       <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4">
         <FormField label="Admin Name" htmlFor="name" span="sm:col-span-1">
-            <FormInput id="name" name="name" value={entity.name} onChange={changeHandler} />
+            <FormInput required id="name" name="name" value={entity.name} onChange={changeHandler} />
         </FormField>
         <FormField label="Admin Email" htmlFor="email" span="sm:col-span-1">
-            <FormInput type="email" id="email" name="email" value={entity.email} onChange={changeHandler} />
+            <FormInput required type="email" id="email" name="email" value={entity.email} onChange={changeHandler} />
         </FormField>
       </div>
 
       <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4">
         <FormField label="Phone" htmlFor="phone" span="sm:col-span-1">
-            <FormInput id="phone" name="phone" value={entity.phone} onChange={changeHandler} />
+            <FormInput required id="phone" name="phone" value={entity.phone} onChange={changeHandler} />
         </FormField>
         <FormField label="Admin Password" htmlFor="password" span="sm:col-span-1">
-            <FormInput type="password" id="password" name="password" value={entity.password} onChange={changeHandler} />
+            <FormInput required type="password" id="password" name="password" value={entity.password} onChange={changeHandler} />
         </FormField>
       </div>
 
       <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4">
         <FormField label="Address" htmlFor="address" span="col-span-2">
-            <FormTextarea id="address" rows="3" name="address" value={entity.address} onChange={changeHandler} />
+            <FormTextarea required id="address" rows="3" name="address" value={entity.address} onChange={changeHandler} />
         </FormField>
       </div>
 
