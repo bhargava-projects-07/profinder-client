@@ -7,13 +7,15 @@ import { getServices } from "../service/servService.js";
 import './dashboard.css';
 import SubServiceForm from "./SubServiceForm.jsx";
 
-
 const SubService = () => {
-  const [entity,setEntity] = useState({
-    serviceid: "",name: "" , description: "" });
-    const [ services,setServices ] = useState([]);
 
-  const [ loading,setLoading ] = useState(true);
+    const [entity,setEntity] = useState({
+    serviceid: "",name: "" , description: "" });
+
+    const [ services,setServices ] = useState([]);
+    const [ loading,setLoading ] = useState(true);
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const { entity_id } = useParams();
     const entityName = "Sub Service";
@@ -85,6 +87,7 @@ const SubService = () => {
     const saveEntity = async ()=>{
 
       const data = await entitySave(entity);
+      setIsSubmitting( false );
       if( data?.cause !== undefined )
       {
           toast.error("Could not save "+entityName.toLowerCase()+": " + data?.cause);
@@ -110,6 +113,7 @@ const SubService = () => {
         try
         {
             const result = await entityUpdate(entity_id,entity);
+            setIsSubmitting( false );
             const successMsg = result?.message || "Entity updated successfully!";
             const isUpdated = result?.updated;
             notifyUpd(successMsg,isUpdated,result);
@@ -154,10 +158,8 @@ const SubService = () => {
       }
     }
 
-    const submitForm = (event)=>
+    const submitForm = ()=>
     {
-        event.preventDefault();
-
         if( entity_id )
         {
           updateEntity();
@@ -186,7 +188,7 @@ const SubService = () => {
 
             <section className='mt-2 ps-13'>
 
-              <SubServiceForm entity={entity} changeHandler={changeHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Sub Service" optionsArr={services} />
+              <SubServiceForm entity={entity} changeHandler={changeHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Sub Service" optionsArr={services} isSubmitting={isSubmitting} setIsSubmitting={setIsSubmitting} />
 
             </section>
 

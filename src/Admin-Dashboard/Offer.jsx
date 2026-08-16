@@ -8,8 +8,11 @@ import './dashboard.css';
 import OfferForm from "./OfferForm.jsx";
 
 const Offer = () => {
-  const [entity,setEntity] = useState({
+
+    const [entity,setEntity] = useState({
     title:"" , detail:"" });
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const { entity_id } = useParams();
     const entityName = "Offer";
@@ -63,6 +66,7 @@ const Offer = () => {
     const saveEntity = async ()=>{
 
       const data = await entitySave(entity);
+      setIsSubmitting( false );
       if( data?.cause !== undefined )
       {
           toast.error("Could not save "+entityName.toLowerCase()+": " + data?.cause);
@@ -88,6 +92,7 @@ const Offer = () => {
         try
         {
             const result = await entityUpdate(entity_id,entity);
+            setIsSubmitting( false );
             const successMsg = result?.message || "Offer updated successfully!";
             const isUpdated = result?.updated;
             notifyUpd(successMsg,isUpdated,result);
@@ -132,10 +137,8 @@ const Offer = () => {
       }
     }
 
-    const submitForm = (event)=>
+    const submitForm = ()=>
     {
-        event.preventDefault();
-
         if( entity_id )
         {
           updateEntity();
@@ -162,7 +165,7 @@ const Offer = () => {
 
             <section className='mt-2 ps-13'>
 
-              <OfferForm entity={entity} changeHandler={changeHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Offer" />
+              <OfferForm entity={entity} changeHandler={changeHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Offer" isSubmitting={isSubmitting} setIsSubmitting={setIsSubmitting} />
 
             </section>
 

@@ -9,11 +9,15 @@ import ServiceProviderForm from "./ServiceProviderForm.jsx";
 import { getSubServices } from "../service/subServService.js";
 
 const ServiceProvider = () => {
-  const [entity,setEntity] = useState({
+
+    const [entity,setEntity] = useState({
     serviceid: "", subserviceid: "", name: "" , businessname: "", email: "", phone: "", description: "", address: "" });
+    
     const [ services,setServices ] = useState([]);
     const [ subservices,setSubservices ] = useState([]);
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    
     const [ loading,setLoading ] = useState(true);
     const [ loadingsub,setLoadingsub ] = useState(false);
 
@@ -126,6 +130,7 @@ const ServiceProvider = () => {
     const saveEntity = async ()=>{
 
       const data = await entitySave(entity);
+      setIsSubmitting( false );
       if( data?.cause !== undefined )
       {
           toast.error("Could not save "+entityName.toLowerCase()+": " + data?.cause);
@@ -151,6 +156,7 @@ const ServiceProvider = () => {
         try
         {
             const result = await entityUpdate(entity_id,entity);
+            setIsSubmitting( false );
             const successMsg = result?.message || "Service Provider updated successfully!";
             const isUpdated = result?.updated;
             notifyUpd(successMsg,isUpdated,result);
@@ -195,10 +201,8 @@ const ServiceProvider = () => {
       }
     }
 
-    const submitForm = (event)=>
+    const submitForm = ()=>
     {
-        event.preventDefault();
-
         if( entity_id )
         {
           updateEntity();
@@ -228,7 +232,7 @@ const ServiceProvider = () => {
 
             <section className='mt-2 ps-13'>
 
-              <ServiceProviderForm entity={entity} changeHandler={changeHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Service Provider" optionsArr={services} subOptionsArr={subservices} />
+              <ServiceProviderForm entity={entity} changeHandler={changeHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Service Provider" optionsArr={services} subOptionsArr={subservices} isSubmitting={isSubmitting} setIsSubmitting={setIsSubmitting} />
 
             </section>
 

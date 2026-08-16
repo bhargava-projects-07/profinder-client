@@ -1,8 +1,10 @@
+
 import { FormField, FormInput, FormTextarea } from "../components/TWFormElements";
+import SubmitButton from "./SubmitButton";
 
-const AdminServiceForm = ({ entity, changeHandler, submitForm, entity_id,entity_name }) => {
+const AdminServiceForm = ({ entity, changeHandler, submitForm, entity_id,entity_name, isSubmitting, setIsSubmitting }) => {
 
-    const btnLable = entity_id ? `Update ${entity_name}` : `Add ${entity_name}`;
+  const btnLable = entity_id ? `Update ${entity_name}` : `Add ${entity_name}`;
     
   return (
     <form onSubmit={submitForm} className="mt-10 mb-3">
@@ -17,14 +19,10 @@ const AdminServiceForm = ({ entity, changeHandler, submitForm, entity_id,entity_
         <FormField label="Service Description" htmlFor="description" span="col-span-2">
             <FormTextarea id="description" rows="3" name="description" value={entity.description} onChange={changeHandler} />
         </FormField>
-
-        <div className="col-span-full">
-          <button type="submit" className="cursor-pointer rounded-md bg-emerald-700 px-4 py-2 text-sm font-semibold text-white shadow-xs hover:bg-emerald-500  transition-colors">
-            {btnLable}
-          </button>
-        </div>
-
       </div>
+
+      <SubmitButton isSubmitting={isSubmitting} setIsSubmitting={setIsSubmitting} btnLable={btnLable} submitForm={submitForm}  />
+
     </form>
   );
 };

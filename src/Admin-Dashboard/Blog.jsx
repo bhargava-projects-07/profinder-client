@@ -8,9 +8,12 @@ import './dashboard.css';
 import BlogForm from "./BlogForm.jsx";
 
 const Blog = () => {
-  const [entity,setEntity] = useState({
+  
+    const [entity,setEntity] = useState({
     title:"" , content:"" });
-  const [blogimage, setBlogimage] = useState(null);
+    const [blogimage, setBlogimage] = useState(null);
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const { entity_id } = useParams();
     const entityName = "Blog";
@@ -80,8 +83,9 @@ const Blog = () => {
 
     const saveEntity = async ()=>{
 
-    const imageData = setUpFormData();
+      const imageData = setUpFormData();
       const data = await entitySave(imageData);
+      setIsSubmitting( false );
       if( data?.cause !== undefined )
       {
           toast.error("Could not save "+entityName.toLowerCase()+": " + data?.cause);
@@ -107,6 +111,7 @@ const Blog = () => {
         try
         {
             const result = await entityUpdate(entity_id,entity);
+            setIsSubmitting( false );
             const successMsg = result?.message || "Blog updated successfully!";
             const isUpdated = result?.updated;
             notifyUpd(successMsg,isUpdated,result);
@@ -151,10 +156,8 @@ const Blog = () => {
       }
     }
 
-    const submitForm = (event)=>
+    const submitForm = ()=>
     {
-        event.preventDefault();
-
         if( entity_id )
         {
           updateEntity();
@@ -181,7 +184,7 @@ const Blog = () => {
 
             <section className='mt-2 ps-13'>
 
-              <BlogForm entity={entity} changeHandler={changeHandler} fileHandler={fileHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Blog" />
+              <BlogForm entity={entity} changeHandler={changeHandler} fileHandler={fileHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Blog" isSubmitting={isSubmitting} setIsSubmitting={setIsSubmitting} />
 
             </section>
 

@@ -8,8 +8,11 @@ import './dashboard.css';
 import AdminServiceForm from "./AdminServiceForm.jsx";
 
 const Service = () => {
-  const [entity,setEntity] = useState({
+
+    const [entity,setEntity] = useState({
     name:"" , description:"" });
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const { entity_id } = useParams();
     const entityName = "Service";
@@ -63,6 +66,7 @@ const Service = () => {
     const saveEntity = async ()=>{
 
       const data = await entitySave(entity);
+      setIsSubmitting( false );
       if( data?.cause !== undefined )
       {
           toast.error("Could not save "+entityName.toLowerCase()+": " + data?.cause);
@@ -88,6 +92,7 @@ const Service = () => {
         try
         {
             const result = await entityUpdate(entity_id,entity);
+            setIsSubmitting( false );
             const successMsg = result?.message || "Entity updated successfully!";
             const isUpdated = result?.updated;
             notifyUpd(successMsg,isUpdated,result);
@@ -132,10 +137,8 @@ const Service = () => {
       }
     }
 
-    const submitForm = (event)=>
+    const submitForm = ()=>
     {
-        event.preventDefault();
-
         if( entity_id )
         {
           updateEntity();
@@ -162,7 +165,7 @@ const Service = () => {
 
             <section className='mt-2 ps-13'>
 
-              <AdminServiceForm entity={entity} changeHandler={changeHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Service" />
+              <AdminServiceForm entity={entity} changeHandler={changeHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Service" isSubmitting={isSubmitting} setIsSubmitting={setIsSubmitting} />
 
             </section>
 

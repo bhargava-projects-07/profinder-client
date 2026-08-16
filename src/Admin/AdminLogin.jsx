@@ -9,53 +9,63 @@ const AdminLogin = () => {
 
     const { token,login } = useAuth();
 
-      const navigate = useNavigate();
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const [user,setUser] = useState({
+    const navigate = useNavigate();
+
+    const [user,setUser] = useState({
     email: "", password: "" });
 
-  const changeHandler = (event)=>{
-    setUser( {...user,[event.target.name]:event.target.value} )
-  }
-
-  const loginCheck = async ()=>{
-    const data = await checkLogin(user);
-    if( data?.cause !== undefined )
-    {
-        toast.error("Could not check login: " + data?.cause);
+    const changeHandler = (event)=>{
+      setUser( {...user,[event.target.name]:event.target.value} )
     }
-    else if( data?.userNotFound !== undefined )
-    {
-        toast.info("Invalid email.");
-    }
-    else if( data?.passwordMismatch !== undefined )
-    {
-        toast.info("Invalid password.");
-    }
-    else
-    {
-        toast.success( "Login Successful !",{
-            onClose: (reason)=>{
-              login( data?.token,data?.userFetched );
-            },
-            autoClose: 3000
-        } );
-    }
-  }
 
-  const submitLogin = (event)=>
-  {
-      event.preventDefault();
+    const loginCheck = async ()=>{
+        const data = await checkLogin(user);
+        setIsSubmitting( false );
+        if( data?.cause !== undefined )
+        {
+            toast.error("Could not check login: " + data?.cause);
+        }
+        else if( data?.userNotFound !== undefined )
+        {
+            toast.info("Invalid email.");
+        }
+        else if( data?.passwordMismatch !== undefined )
+        {
+            toast.info("Invalid password.");
+        }
+        else
+        {
+            toast.success( "Login Successful !",{
+                onClose: (reason)=>{
+                    login( data?.token,data?.userFetched );
+                },
+                autoClose: 3000
+            } );
+        }
+    }
 
-      loginCheck();
-  } 
+    const submitLogin = (event)=>
+    {
+        event.preventDefault();
+        setIsSubmitting(true);
+    } 
 
-  useEffect(()=>{
+    useEffect(()=>
+    {
+        if( isSubmitting )
+        {
+            loginCheck();
+        }
+    },[isSubmitting]);
+
+    useEffect(()=>{
     if( token )
     {
         navigate("/admindashboard");
     }
-  },[]);
+    },[]);
 
   return (
 
@@ -86,7 +96,7 @@ const AdminLogin = () => {
                         </div>
 
                         <div className="mb-4 text-center">
-                            <input type='submit' value="Login" className='cursor-pointer bg-algae-500 text-algae-900 font-semibold hover:bg-algae-600 text-black py-2 px-8 rounded-full' />
+                            <input type='submit' disabled={isSubmitting} value="Login" className={`bg-algae-500 text-algae-900 font-semibold text-black py-2 px-8 rounded-full ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer hover:bg-emerald-500'}`} />
                         </div>
 
                     </form>

@@ -1,6 +1,8 @@
-import { FormField, FormInput, FormTextarea } from "../components/TWFormElements";
 
-const OfferForm = ({ entity, changeHandler, submitForm, entity_id,entity_name }) => {
+import { FormField, FormInput, FormTextarea } from "../components/TWFormElements";
+import SubmitButton from "./SubmitButton";
+
+const OfferForm = ({ entity, changeHandler, submitForm, entity_id,entity_name, isSubmitting, setIsSubmitting }) => {
 
     const btnLable = entity_id ? `Update ${entity_name}` : `Add ${entity_name}`;
     
@@ -17,14 +19,10 @@ const OfferForm = ({ entity, changeHandler, submitForm, entity_id,entity_name })
         <FormField label="Offer Detail" htmlFor="detail" span="col-span-2">
             <FormTextarea id="detail" rows="3" name="detail" value={entity.detail} onChange={changeHandler} />
         </FormField>
-
-        <div className="col-span-full">
-          <button type="submit" className="cursor-pointer rounded-md bg-emerald-700 px-4 py-2 text-sm font-semibold text-white shadow-xs hover:bg-emerald-500  transition-colors">
-            {btnLable}
-          </button>
-        </div>
-
       </div>
+
+      <SubmitButton isSubmitting={isSubmitting} setIsSubmitting={setIsSubmitting} btnLable={btnLable} submitForm={submitForm}  />
+
     </form>
   );
 };
