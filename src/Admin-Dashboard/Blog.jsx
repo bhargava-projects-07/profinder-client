@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { getEntity, entitySave, entityUpdate } from "../service/blogService.js";
@@ -12,6 +12,7 @@ const Blog = () => {
     const [entity,setEntity] = useState({
     title:"" , content:"" });
     const [blogimage, setBlogimage] = useState(null);
+    const blogImageInputRef = useRef();
 
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -58,6 +59,8 @@ const Blog = () => {
         {
             setEntity({
                 title:"" , content:"" });
+            setBlogimage(null);
+            blogImageInputRef.current.value = "";
         }
     }, [entity_id]);    
 
@@ -96,6 +99,8 @@ const Blog = () => {
               onClose: (reason)=>{
               setEntity({
                     title:"" , content:"" });
+              setBlogimage(null);
+              blogImageInputRef.current.value = "";
               },
               autoClose: 3000
           } );
@@ -187,7 +192,7 @@ const Blog = () => {
 
             <section className='mt-2 ps-13'>
 
-              <BlogForm entity={entity} changeHandler={changeHandler} fileHandler={fileHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Blog" isSubmitting={isSubmitting} />
+              <BlogForm entity={entity} blogImageInputRef={blogImageInputRef} changeHandler={changeHandler} fileHandler={fileHandler} submitForm={submitForm} entity_id={entity_id ? entity_id:null} entity_name="Blog" isSubmitting={isSubmitting} />
 
             </section>
 
