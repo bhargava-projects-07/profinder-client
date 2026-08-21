@@ -49,18 +49,18 @@ const SubServices = () => {
             </section>
 
             <section>
-                <Box sx={{ mt:6, width: '100%',display: 'flex',flexDirection: 'column',alignItems: 'center' }}>
-                    <Box sx={{ width: '100%',maxWidth: 1200,minWidth: 1200,bgcolor: '#E7FDFE', px:2, py: 3 }}>
+                <Box sx={{ mt: { xs: 4, sm: 6 }, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', px: { xs: 2, sm: 6 } }}>
+                    <Box sx={{ width: '100%', maxWidth: 1200, minWidth: { xs: 200, lg: 1200 }, bgcolor: '#E7FDFE', px:2, py: 3 }}>
                         <Typography variant="subtitle1">
                             {service?.description}
                         </Typography>
                     </Box>
-                    <Box sx={{ width: '100%',maxWidth: 1200,mt: 4 }}>
-                        <Grid container columnSpacing={3} rowSpacing={4} sx={{ maxWidth: 1200, width: '100%' }}>
+                    <Box sx={{ width: '100%', maxWidth: 1200, mt: 4 }}>
+                        <Grid container columnSpacing={3} rowSpacing= {{ xs: 3, sm: 4 } } sx={{ maxWidth: 1200, width: '100%' }}>
 
                             {
                                 subservices.map((subservice,index)=>(
-                                    <Grid key={index} size={{ xs: 6, sm: 3 }}>
+                                    <Grid key={index} size={{ xs: 12, sm: 6, md: 4, xl: 3 }}>
                                         <Box component={RouterLink} to={`/subservice/${subservice._id}`} sx={{
                                                 display: 'block',
                                                 bgcolor: '#63F0F8',
