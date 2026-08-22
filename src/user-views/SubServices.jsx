@@ -79,6 +79,22 @@ const SubServices = () => {
                                 ))
                             }
 
+                            {
+                                ! subservices.length
+                                ? 
+                                    <>
+                                        <Grid size={ 12 }>
+                                            <Box sx={{ textAlign: 'center' }}>
+                                                <Typography variant="h6">
+                                                    No Sub-Services on record for {service?.name}
+                                                </Typography>
+                                            </Box>
+                                        </Grid>
+                                    </>
+                                :
+                                    <></>
+                            }
+
                         </Grid>
 
                     </Box>
